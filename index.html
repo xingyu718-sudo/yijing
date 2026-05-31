@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>译境 YIJING · 多语言翻译</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <title>YIJING · Multilingual Translator</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0a0a0f; color: #e8e8f0; font-family: 'Noto Sans SC', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+    body { background: #0a0a0f; color: #e8e8f0; font-family: -apple-system, 'Segoe UI', 'Noto Sans', 'Noto Sans JP', 'Noto Sans KR', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
     ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: #111; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
     header { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; background: rgba(10,10,15,0.95); position: sticky; top: 0; z-index: 100; }
     .logo-box { width: 32px; height: 32px; background: linear-gradient(135deg, #f7c948, #e8941a); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #1a1200; flex-shrink: 0; }
-    .logo-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; line-height: 1; }
+    .logo-title { font-size: 20px; font-weight: 800; line-height: 1; letter-spacing: 0.05em; }
     .logo-title span { color: #f7c948; }
-    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.2em; }
+    .logo-sub { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.15em; margin-top: 2px; }
     .logo-wrap { display: flex; align-items: center; gap: 10px; }
-    .upgrade-btn { background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; border: none; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; letter-spacing: 0.05em; transition: all 0.2s; }
-    .upgrade-btn:hover { transform: scale(1.03); }
-    .demo-btn { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 8px; }
+    .upgrade-btn { background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; border: none; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+    .upgrade-btn:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(247,201,72,0.4); }
+    .demo-btn { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 8px; font-family: inherit; }
     .header-right { display: flex; align-items: center; gap: 8px; }
-    .pro-label { color: #f7c948; font-size: 13px; display: none; align-items: center; gap: 6px; }
-    .pro-badge { background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.1em; }
-    .ad-banner { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); border: 1px solid rgba(255,200,60,0.3); border-radius: 8px; padding: 12px 20px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; min-height: 60px; }
-    .ad-label { font-size: 10px; background: rgba(255,200,60,0.15); padding: 2px 8px; border-radius: 3px; color: rgba(255,200,60,0.7); font-weight: 700; }
+    .pro-label { color: #f7c948; font-size: 13px; display: none; align-items: center; gap: 6px; font-weight: 600; }
+    .pro-badge { background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
+    .ad-banner { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); border: 1px solid rgba(255,200,60,0.3); border-radius: 8px; padding: 12px 20px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.5); min-height: 60px; }
+    .ad-label { font-size: 10px; background: rgba(255,200,60,0.15); padding: 2px 8px; border-radius: 3px; color: rgba(255,200,60,0.7); font-weight: 700; letter-spacing: 0.1em; }
     main { flex: 1; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
     .lang-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
     .lang-label { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; flex-shrink: 0; }
@@ -34,7 +33,7 @@
     .char-pro { color: #f7c948 !important; }
     .panel { background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); overflow: hidden; }
     .panel-header { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
-    .panel-title { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+    .panel-title { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
     .clear-btn { background: none; border: none; color: rgba(255,255,255,0.25); cursor: pointer; font-size: 12px; font-family: inherit; }
     .copy-btn { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); padding: 3px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
     .copy-btn:hover { border-color: #f7c948; color: #f7c948; }
@@ -43,16 +42,16 @@
     textarea::placeholder { color: rgba(255,255,255,0.2); }
     .output-area { padding: 14px 16px; min-height: 120px; font-size: 15px; line-height: 1.8; }
     .output-placeholder { color: rgba(255,255,255,0.15); font-size: 14px; }
-    .translate-btn { background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; border: none; padding: 13px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; letter-spacing: 0.1em; transition: all 0.2s; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+    .translate-btn { background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; border: none; padding: 13px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; letter-spacing: 0.05em; transition: all 0.2s; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
     .translate-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(247,201,72,0.4); }
     .translate-btn:disabled { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); cursor: not-allowed; transform: none; box-shadow: none; }
-    .split-screen { display: none; grid-template-columns: 1fr 2px 1fr; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); overflow: hidden; min-height: 340px; }
+    .split-screen { display: none; grid-template-columns: 1fr 2px 1fr; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); overflow: hidden; min-height: 360px; }
     .split-divider { background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; }
     .split-translate-btn { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f7c948, #e8941a); border: none; color: #1a1200; font-size: 18px; cursor: pointer; box-shadow: 0 4px 20px rgba(247,201,72,0.3); transition: all 0.2s; }
     .split-translate-btn:hover { transform: scale(1.1); }
     .split-panel { display: flex; flex-direction: column; }
-    .split-panel textarea { min-height: 280px; }
-    .split-output { padding: 14px 16px; flex: 1; min-height: 280px; font-size: 15px; line-height: 1.8; }
+    .split-panel textarea { min-height: 290px; }
+    .split-output { padding: 14px 16px; flex: 1; min-height: 290px; font-size: 15px; line-height: 1.8; }
     .upgrade-cta { background: linear-gradient(135deg, rgba(247,201,72,0.08), rgba(232,148,26,0.05)); border: 1px solid rgba(247,201,72,0.2); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .upgrade-cta-title { font-size: 13px; font-weight: 600; color: #f7c948; margin-bottom: 3px; }
     .upgrade-cta-sub { font-size: 11px; color: rgba(255,255,255,0.35); }
@@ -64,8 +63,8 @@
     .modal-overlay.show { display: flex; }
     .modal { background: #13131a; border: 1px solid rgba(247,201,72,0.3); border-radius: 16px; padding: 32px; max-width: 420px; width: 100%; animation: fadeIn 0.3s ease; }
     .modal-icon { text-align: center; font-size: 36px; margin-bottom: 12px; }
-    .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.1em; color: #f7c948; text-align: center; margin-bottom: 8px; }
-    .modal-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; text-align: center; margin-bottom: 28px; }
+    .modal-title { font-size: 22px; font-weight: 800; letter-spacing: 0.05em; color: #f7c948; text-align: center; margin-bottom: 8px; }
+    .modal-sub { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; text-align: center; margin-bottom: 24px; }
     .feature-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 8px; }
     .feature-icon { font-size: 18px; flex-shrink: 0; }
     .feature-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
@@ -75,10 +74,12 @@
     .price-amount { font-size: 32px; font-weight: 800; color: #f7c948; }
     .price-unit { font-size: 13px; color: rgba(255,255,255,0.4); }
     .price-note { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
-    .modal-confirm { width: 100%; background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; letter-spacing: 0.05em; margin-bottom: 12px; font-family: inherit; transition: all 0.2s; }
+    .modal-confirm { width: 100%; background: linear-gradient(135deg, #f7c948, #e8941a); color: #1a1200; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; margin-bottom: 12px; font-family: inherit; transition: all 0.2s; }
     .modal-confirm:hover { transform: scale(1.02); }
     .modal-cancel { width: 100%; background: transparent; border: none; color: rgba(255,255,255,0.25); font-size: 12px; cursor: pointer; padding: 8px; font-family: inherit; }
     footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.2); flex-wrap: wrap; gap: 8px; }
+    footer span { cursor: pointer; }
+    footer span:hover { color: rgba(255,255,255,0.5); }
     body.premium .ad-banner { display: none !important; }
     body.premium .upgrade-cta { display: none !important; }
     body.premium .stacked-mode { display: none !important; }
@@ -92,22 +93,24 @@
   <div class="logo-wrap">
     <div class="logo-box">译</div>
     <div>
-      <div class="logo-title">译境 <span>YIJING</span></div>
-      <div class="logo-sub">多语言中文翻译</div>
+      <div class="logo-title">YIJING <span>译境</span></div>
+      <div class="logo-sub" id="logoSub">Multilingual Translator</div>
     </div>
   </div>
   <div class="header-right">
-    <div class="pro-label">✦ 专业版 <span class="pro-badge">PRO</span></div>
-    <button class="upgrade-btn upgrade-btn-header" onclick="showModal()">升级专业版 ↑</button>
-    <button class="demo-btn" onclick="togglePremium()">[演示切换]</button>
+    <div class="pro-label">✦ Pro <span class="pro-badge">PRO</span></div>
+    <button class="upgrade-btn upgrade-btn-header" onclick="showModal()" id="upgradeHeaderBtn">Upgrade to Pro ↑</button>
+    <button class="demo-btn" onclick="togglePremium()" id="demoBtn">[Demo]</button>
   </div>
 </header>
+
 <div style="padding:12px 24px 0;">
-  <div class="ad-banner"><span class="ad-label">广告位</span><span>您的广告将在此展示 · Your AD here</span></div>
+  <div class="ad-banner"><span class="ad-label">AD</span><span id="adText">Your advertisement here · 广告位招租</span></div>
 </div>
+
 <main>
   <div class="lang-bar">
-    <span class="lang-label">源语言</span>
+    <span class="lang-label" id="sourceLangLabel">Source</span>
     <select class="lang-select" id="srcLang" onchange="updateLangLabel()">
       <option value="en-US">🇺🇸 English</option>
       <option value="ja-JP">🇯🇵 日本語</option>
@@ -124,160 +127,358 @@
     </select>
     <span style="color:rgba(255,255,255,0.2);font-size:16px;">→</span>
     <div class="target-lang">🇨🇳 中文（简体）</div>
-    <div class="char-count" id="charCount">0 / 500 字符</div>
+    <div class="char-count" id="charCount">0 / 500</div>
   </div>
+
+  <!-- Free / Stacked Mode -->
   <div class="stacked-mode" style="display:flex;flex-direction:column;gap:12px;">
     <div class="panel">
       <div class="panel-header">
-        <span class="panel-title" id="inputLabel">🇺🇸 原文输入</span>
-        <button class="clear-btn" onclick="clearAll()">清空</button>
+        <span class="panel-title" id="inputLabel">🇺🇸 Input</span>
+        <button class="clear-btn" onclick="clearAll()" id="clearBtn">Clear</button>
       </div>
-      <textarea id="inputText" placeholder="在此输入原文（免费版最多 500 字符）..." oninput="updateCharCount()"></textarea>
+      <textarea id="inputText" oninput="updateCharCount()"></textarea>
     </div>
-    <button class="translate-btn" id="translateBtn" onclick="doTranslate()">翻 译 &nbsp;→</button>
+    <button class="translate-btn" id="translateBtn" onclick="doTranslate()">Translate →</button>
     <div class="panel">
       <div class="panel-header">
-        <span class="panel-title">🇨🇳 中文译文</span>
-        <button class="copy-btn" id="copyBtn" onclick="copyOutput()" style="display:none;">📋 复制译文</button>
+        <span class="panel-title">🇨🇳 Chinese Translation</span>
+        <button class="copy-btn" id="copyBtn" onclick="copyOutput()" style="display:none;">Copy</button>
       </div>
-      <div class="output-area" id="outputArea"><span class="output-placeholder">译文将在此显示...</span></div>
+      <div class="output-area" id="outputArea"><span class="output-placeholder" id="outputPlaceholder">Translation will appear here...</span></div>
     </div>
     <div class="upgrade-cta">
       <div>
-        <div class="upgrade-cta-title">✦ 升级专业版，体验分屏翻译</div>
-        <div class="upgrade-cta-sub">左右对照 · 无限字符 · 去除广告</div>
+        <div class="upgrade-cta-title" id="ctaTitle">✦ Upgrade for Split-Screen Translation</div>
+        <div class="upgrade-cta-sub" id="ctaSub">Side-by-side · Unlimited · Ad-free</div>
       </div>
-      <button class="upgrade-btn" onclick="showModal()">立即升级</button>
+      <button class="upgrade-btn" onclick="showModal()" id="ctaBtn">Upgrade</button>
     </div>
   </div>
+
+  <!-- Premium Split Screen -->
   <div class="split-screen" id="splitScreen">
     <div class="split-panel">
       <div class="panel-header">
-        <span class="panel-title" id="splitInputLabel">🇺🇸 原文输入</span>
-        <button class="clear-btn" onclick="clearAll()">清空</button>
+        <span class="panel-title" id="splitInputLabel">🇺🇸 Input</span>
+        <button class="clear-btn" onclick="clearAll()" id="splitClearBtn">Clear</button>
       </div>
-      <textarea id="splitInputText" placeholder="在此输入原文...&#10;&#10;Ctrl+Enter 快捷翻译" oninput="syncInput()"></textarea>
+      <textarea id="splitInputText" oninput="syncInput()"></textarea>
     </div>
     <div class="split-divider">
       <button class="split-translate-btn" onclick="doTranslate()">→</button>
     </div>
     <div class="split-panel">
       <div class="panel-header">
-        <span class="panel-title">🇨🇳 中文译文</span>
-        <button class="copy-btn" id="splitCopyBtn" onclick="copyOutput()" style="display:none;">复制</button>
+        <span class="panel-title">🇨🇳 Chinese Translation</span>
+        <button class="copy-btn" id="splitCopyBtn" onclick="copyOutput()" style="display:none;" id="splitCopyBtn">Copy</button>
       </div>
-      <div class="split-output" id="splitOutputArea"><span class="output-placeholder">译文将在此显示...</span></div>
+      <div class="split-output" id="splitOutputArea"><span class="output-placeholder" id="splitPlaceholder">Translation will appear here...</span></div>
     </div>
   </div>
-  <div class="ad-banner" style="margin-top:4px;"><span class="ad-label">广告位</span><span>您的广告将在此展示 · Your AD here</span></div>
+
+  <div class="ad-banner" style="margin-top:4px;"><span class="ad-label">AD</span><span id="adText2">Your advertisement here · 广告位招租</span></div>
 </main>
+
 <footer>
-  <span>© 2026 译境 YIJING · 多语言翻译</span>
-  <div style="display:flex;gap:16px;"><span style="cursor:pointer;">隐私政策</span><span style="cursor:pointer;">使用条款</span><span style="cursor:pointer;">联系我们</span></div>
+  <span>© 2026 YIJING 译境</span>
+  <div style="display:flex;gap:16px;">
+    <span id="footerPrivacy">Privacy Policy</span>
+    <span id="footerTerms">Terms of Use</span>
+    <span id="footerContact">Contact Us</span>
+  </div>
 </footer>
+
+<!-- Modal -->
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)hideModal()">
   <div class="modal">
     <div class="modal-icon">✦</div>
-    <div class="modal-title">专业版 PRO</div>
-    <div class="modal-sub">解锁分屏对照翻译，享受极致翻译体验</div>
-    <div class="feature-item"><span class="feature-icon">🖥️</span><div><div class="feature-title">分屏对照翻译</div><div class="feature-desc">原文译文同屏显示，阅读更高效</div></div></div>
-    <div class="feature-item"><span class="feature-icon">♾️</span><div><div class="feature-title">无限字符翻译</div><div class="feature-desc">长文档、论文不受字数限制</div></div></div>
-    <div class="feature-item"><span class="feature-icon">🚫</span><div><div class="feature-title">无广告体验</div><div class="feature-desc">专注翻译，不受广告打扰</div></div></div>
-    <div class="feature-item"><span class="feature-icon">⚡</span><div><div class="feature-title">优先翻译速度</div><div class="feature-desc">专属服务器，响应更快</div></div></div>
+    <div class="modal-title" id="modalTitle">PRO Plan</div>
+    <div class="modal-sub" id="modalSub">Unlock split-screen translation and unlimited usage</div>
+    <div class="feature-item"><span class="feature-icon">🖥️</span><div><div class="feature-title" id="f1t">Split-Screen Translation</div><div class="feature-desc" id="f1d">Original and translation side by side</div></div></div>
+    <div class="feature-item"><span class="feature-icon">♾️</span><div><div class="feature-title" id="f2t">Unlimited Characters</div><div class="feature-desc" id="f2d">No limits on document length</div></div></div>
+    <div class="feature-item"><span class="feature-icon">🚫</span><div><div class="feature-title" id="f3t">Ad-Free Experience</div><div class="feature-desc" id="f3d">Focus on translation, no distractions</div></div></div>
+    <div class="feature-item"><span class="feature-icon">⚡</span><div><div class="feature-title" id="f4t">Priority Speed</div><div class="feature-desc" id="f4d">Dedicated servers for faster results</div></div></div>
     <div class="price-box">
-      <div class="price-label">月付</div>
-      <div><span class="price-amount">¥29</span><span class="price-unit">/月</span></div>
-      <div class="price-note">年付仅 ¥19/月，节省 35%</div>
+      <div class="price-label" id="priceLabel">Monthly</div>
+      <div><span class="price-amount">¥29</span><span class="price-unit">/mo</span></div>
+      <div class="price-note" id="priceNote">Annual plan only ¥19/mo · Save 35%</div>
     </div>
-    <button class="modal-confirm" onclick="activatePremium()">立即开通专业版 →</button>
-    <button class="modal-cancel" onclick="hideModal()">暂不升级，继续免费使用</button>
+    <button class="modal-confirm" onclick="activatePremium()" id="modalConfirm">Get Pro Now →</button>
+    <button class="modal-cancel" onclick="hideModal()" id="modalCancel">Maybe later</button>
   </div>
 </div>
+
 <script>
-  const MAX_FREE = 500;
-  let isPremium = false;
-  let lastOutput = '';
-  function updateLangLabel() {
-    const sel = document.getElementById('srcLang');
-    const text = sel.options[sel.selectedIndex].text.trim();
-    document.getElementById('inputLabel').textContent = text + ' 原文输入';
-    document.getElementById('splitInputLabel').textContent = text + ' 原文输入';
+const I18N = {
+  en: {
+    logoSub: "Multilingual Translator", upgradeBtn: "Upgrade to Pro ↑", demo: "[Demo]",
+    sourceLangLabel: "Source Language", charFree: " / 500 chars", charPro: "✦ Unlimited",
+    inputLabel: "Input", clearBtn: "Clear", translateBtn: "Translate →", translating: "Translating...",
+    outputTitle: "Chinese Translation", copyBtn: "Copy", copied: "✓ Copied",
+    outputPlaceholder: "Translation will appear here...", splitHint: "Ctrl+Enter to translate",
+    ctaTitle: "✦ Upgrade for Split-Screen Translation", ctaSub: "Side-by-side · Unlimited · Ad-free",
+    ctaBtn: "Upgrade Now", footerPrivacy: "Privacy Policy", footerTerms: "Terms of Use", footerContact: "Contact Us",
+    modalTitle: "PRO Plan", modalSub: "Unlock split-screen translation and unlimited usage",
+    f1t: "Split-Screen Translation", f1d: "Original and translation side by side",
+    f2t: "Unlimited Characters", f2d: "No limits on document length",
+    f3t: "Ad-Free Experience", f3d: "Focus on translation, no distractions",
+    f4t: "Priority Speed", f4d: "Dedicated servers for faster results",
+    priceLabel: "Monthly", priceNote: "Annual plan only ¥19/mo · Save 35%",
+    modalConfirm: "Get Pro Now →", modalCancel: "Maybe later", adText: "Your advertisement here"
+  },
+  zh: {
+    logoSub: "多语言中文翻译", upgradeBtn: "升级专业版 ↑", demo: "[演示]",
+    sourceLangLabel: "源语言", charFree: " / 500 字符", charPro: "✦ 无限制",
+    inputLabel: "原文输入", clearBtn: "清空", translateBtn: "翻 译 →", translating: "翻译中...",
+    outputTitle: "中文译文", copyBtn: "复制", copied: "✓ 已复制",
+    outputPlaceholder: "译文将在此显示...", splitHint: "Ctrl+Enter 快捷翻译",
+    ctaTitle: "✦ 升级专业版，体验分屏翻译", ctaSub: "左右对照 · 无限字符 · 去除广告",
+    ctaBtn: "立即升级", footerPrivacy: "隐私政策", footerTerms: "使用条款", footerContact: "联系我们",
+    modalTitle: "专业版 PRO", modalSub: "解锁分屏对照翻译，享受极致翻译体验",
+    f1t: "分屏对照翻译", f1d: "原文译文同屏显示，阅读更高效",
+    f2t: "无限字符翻译", f2d: "长文档、论文不受字数限制",
+    f3t: "无广告体验", f3d: "专注翻译，不受广告打扰",
+    f4t: "优先翻译速度", f4d: "专属服务器，响应更快",
+    priceLabel: "月付", priceNote: "年付仅 ¥19/月，节省 35%",
+    modalConfirm: "立即开通专业版 →", modalCancel: "暂不升级", adText: "广告位招租"
+  },
+  ja: {
+    logoSub: "多言語中国語翻訳", upgradeBtn: "Proにアップグレード ↑", demo: "[デモ]",
+    sourceLangLabel: "ソース言語", charFree: " / 500文字", charPro: "✦ 無制限",
+    inputLabel: "原文入力", clearBtn: "クリア", translateBtn: "翻訳する →", translating: "翻訳中...",
+    outputTitle: "中国語翻訳", copyBtn: "コピー", copied: "✓ コピー済み",
+    outputPlaceholder: "翻訳結果がここに表示されます...", splitHint: "Ctrl+Enterで翻訳",
+    ctaTitle: "✦ 分割画面翻訳にアップグレード", ctaSub: "並列表示 · 無制限 · 広告なし",
+    ctaBtn: "今すぐアップグレード", footerPrivacy: "プライバシーポリシー", footerTerms: "利用規約", footerContact: "お問い合わせ",
+    modalTitle: "PROプラン", modalSub: "分割画面翻訳と無制限利用を解除",
+    f1t: "分割画面翻訳", f1d: "原文と翻訳を並べて表示",
+    f2t: "無制限文字数", f2d: "文書の長さに制限なし",
+    f3t: "広告なし体験", f3d: "翻訳に集中できる環境",
+    f4t: "優先速度", f4d: "専用サーバーで高速翻訳",
+    priceLabel: "月払い", priceNote: "年払いは月¥19のみ · 35%節約",
+    modalConfirm: "今すぐPro取得 →", modalCancel: "後で", adText: "広告掲載はこちら"
+  },
+  ko: {
+    logoSub: "다국어 중국어 번역", upgradeBtn: "Pro로 업그레이드 ↑", demo: "[데모]",
+    sourceLangLabel: "소스 언어", charFree: " / 500자", charPro: "✦ 무제한",
+    inputLabel: "원문 입력", clearBtn: "지우기", translateBtn: "번역하기 →", translating: "번역 중...",
+    outputTitle: "중국어 번역", copyBtn: "복사", copied: "✓ 복사됨",
+    outputPlaceholder: "번역 결과가 여기에 표시됩니다...", splitHint: "Ctrl+Enter로 번역",
+    ctaTitle: "✦ 분할 화면 번역으로 업그레이드", ctaSub: "나란히 보기 · 무제한 · 광고 없음",
+    ctaBtn: "지금 업그레이드", footerPrivacy: "개인정보 처리방침", footerTerms: "이용약관", footerContact: "문의하기",
+    modalTitle: "PRO 플랜", modalSub: "분할 화면 번역 및 무제한 사용 잠금 해제",
+    f1t: "분할 화면 번역", f1d: "원문과 번역을 나란히 표시",
+    f2t: "무제한 문자", f2d: "문서 길이 제한 없음",
+    f3t: "광고 없는 경험", f3d: "번역에 집중할 수 있는 환경",
+    f4t: "우선 속도", f4d: "전용 서버로 빠른 번역",
+    priceLabel: "월간", priceNote: "연간 플랜은 월 ¥19만 · 35% 절약",
+    modalConfirm: "지금 Pro 이용 →", modalCancel: "나중에", adText: "광고 문의"
+  },
+  fr: {
+    logoSub: "Traducteur multilingue", upgradeBtn: "Passer à Pro ↑", demo: "[Démo]",
+    sourceLangLabel: "Langue source", charFree: " / 500 car.", charPro: "✦ Illimité",
+    inputLabel: "Saisie", clearBtn: "Effacer", translateBtn: "Traduire →", translating: "Traduction...",
+    outputTitle: "Traduction chinoise", copyBtn: "Copier", copied: "✓ Copié",
+    outputPlaceholder: "La traduction apparaîtra ici...", splitHint: "Ctrl+Entrée pour traduire",
+    ctaTitle: "✦ Passer à la traduction en écran partagé", ctaSub: "Côte à côte · Illimité · Sans pub",
+    ctaBtn: "Mettre à niveau", footerPrivacy: "Politique de confidentialité", footerTerms: "CGU", footerContact: "Contact",
+    modalTitle: "Plan PRO", modalSub: "Débloquez la traduction en écran partagé",
+    f1t: "Traduction écran partagé", f1d: "Original et traduction côte à côte",
+    f2t: "Caractères illimités", f2d: "Aucune limite de longueur",
+    f3t: "Sans publicité", f3d: "Concentrez-vous sur la traduction",
+    f4t: "Vitesse prioritaire", f4d: "Serveurs dédiés pour des résultats rapides",
+    priceLabel: "Mensuel", priceNote: "Annuel seulement ¥19/mois · Économisez 35%",
+    modalConfirm: "Obtenir Pro maintenant →", modalCancel: "Peut-être plus tard", adText: "Votre publicité ici"
+  },
+  de: {
+    logoSub: "Mehrsprachiger Übersetzer", upgradeBtn: "Auf Pro upgraden ↑", demo: "[Demo]",
+    sourceLangLabel: "Quellsprache", charFree: " / 500 Zeichen", charPro: "✦ Unbegrenzt",
+    inputLabel: "Eingabe", clearBtn: "Löschen", translateBtn: "Übersetzen →", translating: "Übersetze...",
+    outputTitle: "Chinesische Übersetzung", copyBtn: "Kopieren", copied: "✓ Kopiert",
+    outputPlaceholder: "Übersetzung erscheint hier...", splitHint: "Strg+Enter zum Übersetzen",
+    ctaTitle: "✦ Upgrade auf geteilten Bildschirm", ctaSub: "Nebeneinander · Unbegrenzt · Werbefrei",
+    ctaBtn: "Jetzt upgraden", footerPrivacy: "Datenschutz", footerTerms: "Nutzungsbedingungen", footerContact: "Kontakt",
+    modalTitle: "PRO Plan", modalSub: "Geteilten Bildschirm und unbegrenzte Nutzung freischalten",
+    f1t: "Geteilter Bildschirm", f1d: "Original und Übersetzung nebeneinander",
+    f2t: "Unbegrenzte Zeichen", f2d: "Keine Längenbeschränkung",
+    f3t: "Werbefreie Erfahrung", f3d: "Konzentrieren Sie sich auf die Übersetzung",
+    f4t: "Priorität Geschwindigkeit", f4d: "Dedizierte Server für schnelle Ergebnisse",
+    priceLabel: "Monatlich", priceNote: "Jahresplan nur ¥19/Mo · 35% sparen",
+    modalConfirm: "Pro jetzt holen →", modalCancel: "Vielleicht später", adText: "Ihre Werbung hier"
+  },
+  es: {
+    logoSub: "Traductor multilingüe", upgradeBtn: "Actualizar a Pro ↑", demo: "[Demo]",
+    sourceLangLabel: "Idioma fuente", charFree: " / 500 car.", charPro: "✦ Ilimitado",
+    inputLabel: "Entrada", clearBtn: "Borrar", translateBtn: "Traducir →", translating: "Traduciendo...",
+    outputTitle: "Traducción china", copyBtn: "Copiar", copied: "✓ Copiado",
+    outputPlaceholder: "La traducción aparecerá aquí...", splitHint: "Ctrl+Enter para traducir",
+    ctaTitle: "✦ Actualizar a pantalla dividida", ctaSub: "Lado a lado · Ilimitado · Sin anuncios",
+    ctaBtn: "Actualizar ahora", footerPrivacy: "Privacidad", footerTerms: "Términos", footerContact: "Contacto",
+    modalTitle: "Plan PRO", modalSub: "Desbloquear traducción en pantalla dividida",
+    f1t: "Pantalla dividida", f1d: "Original y traducción uno al lado del otro",
+    f2t: "Caracteres ilimitados", f2d: "Sin límite de longitud",
+    f3t: "Sin anuncios", f3d: "Concéntrate en la traducción",
+    f4t: "Velocidad prioritaria", f4d: "Servidores dedicados para resultados rápidos",
+    priceLabel: "Mensual", priceNote: "Plan anual solo ¥19/mes · Ahorra 35%",
+    modalConfirm: "Obtener Pro ahora →", modalCancel: "Quizás más tarde", adText: "Tu anuncio aquí"
   }
-  function updateCharCount() {
-    const txt = document.getElementById('inputText').value;
-    const el = document.getElementById('charCount');
-    if (isPremium) { el.textContent = '✦ 无限制翻译'; el.className = 'char-count char-pro'; return; }
-    el.textContent = txt.length + ' / ' + MAX_FREE + ' 字符';
-    el.className = 'char-count' + (txt.length > MAX_FREE ? ' char-over' : '');
-  }
-  function syncInput() {
-    document.getElementById('inputText').value = document.getElementById('splitInputText').value;
-    updateCharCount();
-  }
-  function clearAll() {
-    document.getElementById('inputText').value = '';
-    document.getElementById('splitInputText').value = '';
-    const ph = '<span class="output-placeholder">译文将在此显示...</span>';
-    document.getElementById('outputArea').innerHTML = ph;
-    document.getElementById('splitOutputArea').innerHTML = ph;
-    document.getElementById('copyBtn').style.display = 'none';
-    document.getElementById('splitCopyBtn').style.display = 'none';
-    updateCharCount(); lastOutput = '';
-  }
-  async function doTranslate() {
-    const inputEl = isPremium ? document.getElementById('splitInputText') : document.getElementById('inputText');
-    const text = inputEl.value.trim();
-    if (!text) return;
-    if (!isPremium && text.length > MAX_FREE) { showModal(); return; }
-    const langCode = document.getElementById('srcLang').value;
-    const btn = document.getElementById(isPremium ? 'splitTranslateBtn' : 'translateBtn');
-    if (btn) btn.disabled = true;
-    const loadHtml = '<span class="loading">正在翻译中，请稍候...</span>';
-    document.getElementById('outputArea').innerHTML = loadHtml;
-    document.getElementById('splitOutputArea').innerHTML = loadHtml;
-    try {
-      const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=' + langCode + '|zh-CN';
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.responseStatus === 200) {
-        lastOutput = data.responseData.translatedText;
-        const html = '<span class="fade-in">' + lastOutput.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span>';
-        document.getElementById('outputArea').innerHTML = html;
-        document.getElementById('splitOutputArea').innerHTML = html;
-        document.getElementById('copyBtn').style.display = 'inline-block';
-        document.getElementById('splitCopyBtn').style.display = 'inline-block';
-      } else {
-        const err = '<span style="color:#ff6b6b">⚠️ 翻译失败，请稍后重试。</span>';
-        document.getElementById('outputArea').innerHTML = err;
-        document.getElementById('splitOutputArea').innerHTML = err;
-      }
-    } catch(e) {
-      const err = '<span style="color:#ff6b6b">⚠️ 网络错误，请检查连接后重试。</span>';
+};
+
+let lang = 'en';
+let isPremium = false;
+let lastOutput = '';
+const MAX_FREE = 500;
+
+function detectLang() {
+  const bl = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if (bl.startsWith('zh')) return 'zh';
+  if (bl.startsWith('ja')) return 'ja';
+  if (bl.startsWith('ko')) return 'ko';
+  if (bl.startsWith('fr')) return 'fr';
+  if (bl.startsWith('de')) return 'de';
+  if (bl.startsWith('es')) return 'es';
+  return 'en';
+}
+
+function applyLang() {
+  const t = I18N[lang];
+  document.getElementById('logoSub').textContent = t.logoSub;
+  document.getElementById('upgradeHeaderBtn').textContent = t.upgradeBtn;
+  document.getElementById('demoBtn').textContent = t.demo;
+  document.getElementById('sourceLangLabel').textContent = t.sourceLangLabel;
+  document.getElementById('inputLabel').textContent = '🇺🇸 ' + t.inputLabel;
+  document.getElementById('splitInputLabel').textContent = '🇺🇸 ' + t.inputLabel;
+  document.getElementById('clearBtn').textContent = t.clearBtn;
+  document.getElementById('splitClearBtn').textContent = t.clearBtn;
+  document.getElementById('translateBtn').textContent = t.translateBtn;
+  document.getElementById('outputPlaceholder').textContent = t.outputPlaceholder;
+  document.getElementById('splitPlaceholder').textContent = t.outputPlaceholder;
+  document.getElementById('copyBtn').textContent = t.copyBtn;
+  document.getElementById('splitCopyBtn').textContent = t.copyBtn;
+  document.getElementById('ctaTitle').textContent = t.ctaTitle;
+  document.getElementById('ctaSub').textContent = t.ctaSub;
+  document.getElementById('ctaBtn').textContent = t.ctaBtn;
+  document.getElementById('footerPrivacy').textContent = t.footerPrivacy;
+  document.getElementById('footerTerms').textContent = t.footerTerms;
+  document.getElementById('footerContact').textContent = t.footerContact;
+  document.getElementById('modalTitle').textContent = t.modalTitle;
+  document.getElementById('modalSub').textContent = t.modalSub;
+  document.getElementById('f1t').textContent = t.f1t; document.getElementById('f1d').textContent = t.f1d;
+  document.getElementById('f2t').textContent = t.f2t; document.getElementById('f2d').textContent = t.f2d;
+  document.getElementById('f3t').textContent = t.f3t; document.getElementById('f3d').textContent = t.f3d;
+  document.getElementById('f4t').textContent = t.f4t; document.getElementById('f4d').textContent = t.f4d;
+  document.getElementById('priceLabel').textContent = t.priceLabel;
+  document.getElementById('priceNote').textContent = t.priceNote;
+  document.getElementById('modalConfirm').textContent = t.modalConfirm;
+  document.getElementById('modalCancel').textContent = t.modalCancel;
+  document.getElementById('adText').textContent = t.adText;
+  document.getElementById('adText2').textContent = t.adText;
+  const inp = document.getElementById('inputText');
+  inp.placeholder = t.inputLabel + (isPremium ? '\n\n' + t.splitHint : ' (' + MAX_FREE + (lang==='zh'?'字符':'chars') + ')...');
+  document.getElementById('splitInputText').placeholder = t.inputLabel + '\n\n' + t.splitHint;
+  updateCharCount();
+}
+
+function updateLangLabel() {
+  const sel = document.getElementById('srcLang');
+  const text = sel.options[sel.selectedIndex].text.trim();
+  const t = I18N[lang];
+  document.getElementById('inputLabel').textContent = text + ' ' + t.inputLabel;
+  document.getElementById('splitInputLabel').textContent = text + ' ' + t.inputLabel;
+}
+
+function updateCharCount() {
+  const txt = document.getElementById('inputText').value;
+  const el = document.getElementById('charCount');
+  const t = I18N[lang];
+  if (isPremium) { el.textContent = t.charPro; el.className = 'char-count char-pro'; return; }
+  el.textContent = txt.length + t.charFree;
+  el.className = 'char-count' + (txt.length > MAX_FREE ? ' char-over' : '');
+}
+
+function syncInput() {
+  document.getElementById('inputText').value = document.getElementById('splitInputText').value;
+  updateCharCount();
+}
+
+function clearAll() {
+  document.getElementById('inputText').value = '';
+  document.getElementById('splitInputText').value = '';
+  const ph = '<span class="output-placeholder">' + I18N[lang].outputPlaceholder + '</span>';
+  document.getElementById('outputArea').innerHTML = ph;
+  document.getElementById('splitOutputArea').innerHTML = ph;
+  document.getElementById('copyBtn').style.display = 'none';
+  document.getElementById('splitCopyBtn').style.display = 'none';
+  updateCharCount(); lastOutput = '';
+}
+
+async function doTranslate() {
+  const inputEl = isPremium ? document.getElementById('splitInputText') : document.getElementById('inputText');
+  const text = inputEl.value.trim();
+  if (!text) return;
+  if (!isPremium && text.length > MAX_FREE) { showModal(); return; }
+  const langCode = document.getElementById('srcLang').value;
+  const t = I18N[lang];
+  document.getElementById('translateBtn').disabled = true;
+  const loadHtml = '<span class="loading">' + t.translating + '</span>';
+  document.getElementById('outputArea').innerHTML = loadHtml;
+  document.getElementById('splitOutputArea').innerHTML = loadHtml;
+  try {
+    const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(text) + '&langpair=' + langCode + '|zh-CN';
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data.responseStatus === 200) {
+      lastOutput = data.responseData.translatedText;
+      const html = '<span class="fade-in">' + lastOutput.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span>';
+      document.getElementById('outputArea').innerHTML = html;
+      document.getElementById('splitOutputArea').innerHTML = html;
+      document.getElementById('copyBtn').style.display = 'inline-block';
+      document.getElementById('splitCopyBtn').style.display = 'inline-block';
+    } else {
+      const err = '<span style="color:#ff6b6b">⚠️ Translation failed. Please try again.</span>';
       document.getElementById('outputArea').innerHTML = err;
       document.getElementById('splitOutputArea').innerHTML = err;
     }
-    if (btn) btn.disabled = false;
+  } catch(e) {
+    const err = '<span style="color:#ff6b6b">⚠️ Network error. Please check your connection.</span>';
+    document.getElementById('outputArea').innerHTML = err;
+    document.getElementById('splitOutputArea').innerHTML = err;
   }
-  function copyOutput() {
-    if (!lastOutput) return;
-    navigator.clipboard.writeText(lastOutput).then(() => {
-      const btns = [document.getElementById('copyBtn'), document.getElementById('splitCopyBtn')];
-      btns.forEach(b => { if(b){b.textContent='✓ 已复制';b.classList.add('copy-success');} });
-      setTimeout(() => { document.getElementById('copyBtn').textContent='📋 复制译文'; document.getElementById('splitCopyBtn').textContent='复制'; btns.forEach(b=>{if(b)b.classList.remove('copy-success');}); }, 2000);
-    });
-  }
-  function showModal() { document.getElementById('modalOverlay').classList.add('show'); }
-  function hideModal() { document.getElementById('modalOverlay').classList.remove('show'); }
-  function activatePremium() {
-    isPremium = true; document.body.classList.add('premium'); hideModal(); updateCharCount();
-    document.getElementById('splitInputText').value = document.getElementById('inputText').value;
-  }
-  function togglePremium() {
-    if (isPremium) { isPremium = false; document.body.classList.remove('premium'); }
-    else { activatePremium(); }
-    updateCharCount();
-  }
-  document.addEventListener('keydown', e => { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') doTranslate(); });
+  document.getElementById('translateBtn').disabled = false;
+}
+
+function copyOutput() {
+  if (!lastOutput) return;
+  navigator.clipboard.writeText(lastOutput).then(() => {
+    const t = I18N[lang];
+    const btns = [document.getElementById('copyBtn'), document.getElementById('splitCopyBtn')];
+    btns.forEach(b => { if(b){b.textContent=t.copied;b.classList.add('copy-success');} });
+    setTimeout(() => { btns.forEach(b => { if(b){b.textContent=t.copyBtn;b.classList.remove('copy-success');} }); }, 2000);
+  });
+}
+
+function showModal() { document.getElementById('modalOverlay').classList.add('show'); }
+function hideModal() { document.getElementById('modalOverlay').classList.remove('show'); }
+
+function activatePremium() {
+  isPremium = true;
+  document.body.classList.add('premium');
+  hideModal(); applyLang();
+  document.getElementById('splitInputText').value = document.getElementById('inputText').value;
+}
+
+function togglePremium() {
+  if (isPremium) { isPremium = false; document.body.classList.remove('premium'); }
+  else { activatePremium(); return; }
+  applyLang();
+}
+
+document.addEventListener('keydown', e => { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') doTranslate(); });
+
+// Init
+lang = detectLang();
+applyLang();
 </script>
 </body>
 </html>
